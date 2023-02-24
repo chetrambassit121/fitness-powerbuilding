@@ -11,7 +11,11 @@
                     <div class="row">
                         <div class="col-md-7">
                             <h2>Fitness &amp; Health <br>is a <b>Mentality</b></h2>
-                            <span><a class="btn btn-primary" href={% url 'login' %}>Start Your Journey</a></span>
+                            {% if user.is_authenticated %}
+                                <span><a class="btn btn-primary" href={% url 'show_profile_page' request.user.profile.pk%}>Welcome {{ request.user.username }}</a></span>
+                            {% else %}
+                                <span><a class="btn btn-primary" href={% url 'login' %}>Start Your Journey</a></span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
