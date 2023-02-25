@@ -2,26 +2,29 @@
 {% load static %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<div class="fh5co-parallax" style="background-image: url(/static/images/home-image-3.jpg);" data-stellar-background-ratio="0.5">
+<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic2.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
-				<div class="fh5co-intro fh5co-table-cell animate-box loginform">
+				<div class="fh5co-intro fh5co-table-cell animate-box">
 					<h1 class="text-center">Login</h1>
 					<form method='POST'>
 						{% csrf_token %}
 						<div class="row-md-2">
 							<div class="form-group">
-								<input type="text" class="form-control" name="username" placeholder="Username">
+								<input type="text" class="loginform" name="username" placeholder="Username">
 							</div>
 						</div>
 						<div class="row-md-2">
 							<div class="form-group">
-								<input type="password" class="form-control" name="password" placeholder="Password">
+								<input type="password" class="loginform" name="password" placeholder="Password">
 							</div>
 						</div>
-						<a href={% url 'register' %}><p>Not a User? Register here!</p></a>
+						<div class="login-links">
+							<a href={% url 'register' %}><p class="link">Not a User? Register here!</p></a>
+							<a href={% url 'password_reset' %}><p class="link">Forgot username/password</p></a>
+						</div>
 						{% comment %} <div class="col-md-12">
 							<div class="form-group">
 								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
@@ -32,6 +35,7 @@
 								<input type="submit" value="Login" class="btn btn-primary">
 							</div>
 						</div>
+						<small><a target="_blank" href="https://www.pexels.com/photo/woman-lifting-barbell-1552249/">Photo by Leon Ardho</small>
 					</form>
 				</div>
 			</div>

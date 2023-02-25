@@ -3,9 +3,11 @@
 {% block content %}
 
     <!-- end:fh5co-header -->
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
     <div class="fh5co-hero">
         <div class="fh5co-overlay"></div>
-        <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(/static/images/fitness-home.jpg);">
+        <div class="fh5co-cover" style="background-image: url(/static/images/fitness-home.jpg); " >
             <div class="desc animate-box">
                 <div class="container">
                     <div class="row">
@@ -16,6 +18,7 @@
                             {% else %}
                                 <span><a class="btn btn-primary" href={% url 'login' %}>Start Your Journey</a></span>
                             {% endif %}
+                            <small><a target="_blank" href="https://www.pexels.com/photo/photo-of-man-with-muscular-body-1547248/">Photo by Pikx By Panther</a></small>
                         </div>
                     </div>
                 </div>
