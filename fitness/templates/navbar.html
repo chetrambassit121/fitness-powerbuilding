@@ -68,9 +68,10 @@
                             </a></li>
                             
                             <li class="search-container">
-                                <form action="/action_page.php">
-                                <input type="text" placeholder="Search User" name="search" class="search-form">
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                                <form method="GET" action="{% url 'profile-search' %}">
+                                    {% comment %} <input type="text" placeholder="Search User" name="search" class="search-form"> {% endcomment %}
+                                    <input type="text" class="search-form" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </li>
                            

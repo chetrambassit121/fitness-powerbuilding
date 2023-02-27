@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Login{% endblock %}
+{% block title %}Search{% endblock %}
 {% block content %}
 
-<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic10.jpg);">
+<div class="fh5co-parallax" style="background-image: url(/static/images/fitness6.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 				<div class="fh5co-intro fh5co-table-cell animate-box">
-					<h1 class="text-center">User List</h1>
+					<h1 class="text-center">User Search</h1>
 					<small><a target="_blank" href="https://www.pexels.com/photo/man-holding-black-barbell-703012/">Photo by Victor Freitas</a></small>
                 </div>
             </div>
@@ -23,8 +23,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="heading-section text-center animate-box">
-                    <h2>Public User List</h2>
-                    <p>Check out other users fitness journey!</p>
+                    <h2>Searched User List</h2>
+                    <p>Heres who we found on your search!</p>
                 </div>
             </div>
         </div>
@@ -43,11 +43,11 @@
             <div class="row text-center">
                 <div class="col-md-12 schedule-container">
                     <div class="schedule-content active" data-day="sunday">
-						{% for user in users %}
+                        {% for profile in profile_list %}
 							<div class="col-md-3 col-sm-6">
 								<div class="program program-schedule">
-									<a href="{% url 'show_profile_page' user.profile.pk %}">
-										<img class="round-circle user-img" src="{{ user.profile.picture.url }}"/>
+									<a href="{% url 'show_profile_page' profile.pk %}">
+										<img class="round-circle user-img" src="{{ profile.picture.url }}"/>
 									</a>
 									{% comment %} <small>06AM-7AM</small> {% endcomment %}
 									<h3>{{user.username}}</h3>

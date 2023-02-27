@@ -10,6 +10,7 @@ from .views import (
     ShowSharedProfilePageView,
     UserDeleteView,
     UserEditView,
+    UserSearch,
     load_citys,
     register,
 )
@@ -92,6 +93,10 @@ urlpatterns = [
         name="account_delete",
     ),
 
-    # sql users list 
+    # users list 
     path("users_list/", views.User_List, name="users_list"),
+    
+    # user search
+    path("search/", views.UserSearch.as_view(), name="profile-search"),
+    
 ]

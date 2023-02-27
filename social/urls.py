@@ -65,7 +65,7 @@ urlpatterns = [
     ),
 
     # search bar
-    path("search/", UserSearch.as_view(), name="profile-search"),
+    # path("search/", UserSearch.as_view(), name="profile-search"),
 
     # explore #hashtag icon in navbar
     path("explore/", Explore.as_view(), name="explore"),
