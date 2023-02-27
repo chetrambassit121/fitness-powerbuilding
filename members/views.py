@@ -238,3 +238,8 @@ class UserEditView(generic.UpdateView):
 class UserDeleteView(DeleteView):
     model = User
     success_url = reverse_lazy("login")
+
+
+def User_List(request):
+    users = User.objects.all() 
+    return render(request, 'registration/user_list.html', {'users':users})

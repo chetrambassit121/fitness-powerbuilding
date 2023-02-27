@@ -93,5 +93,5 @@ urlpatterns = [
     ),
 
     # sql users list 
-    path("users_list/", users_list, name="users_list"),
+    path("users_list/", views.User_List, name="users_list"),
 ]
