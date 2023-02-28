@@ -32,6 +32,15 @@
                         </li> {% endcomment %}
                         {% if user.is_authenticated %}
                             <li>
+                                <a href="#" class="fh5co-sub-ddown">Explore</a>
+                                <ul class="fh5co-sub-menu">
+                                    <li><a href="{% url 'trainer' %}">Trainers</a></li>
+                                    <li><a href="{% url 'classes' %}">Classes</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </li> 
+                            <li>
                                 <a href="#">Social</a>
                                 <ul class="fh5co-sub-menu">
                                     {% comment %} <li><a href="#" class="notification hashtag">
@@ -41,15 +50,6 @@
                                     <li><a href="#">#HashTags</a></li>
                                     <li><a href="{% url 'users_list' %}">User-List</a></li>
                                     <li><a href="#">Contact</a></li>
-                                </ul>
-                            </li> 
-                            <li>
-                                <a href="#" class="fh5co-sub-ddown">Explore</a>
-                                <ul class="fh5co-sub-menu">
-                                    <li><a href="{% url 'trainer' %}">Trainers</a></li>
-                                    <li><a href="{% url 'classes' %}">Classes</a></li>
-                                    <li><a href="{% url 'about' %}">About</a></li>
-                                    <li><a href="{% url 'contact' %}">Contact</a></li>
                                 </ul>
                             </li> 
                             <li>
