@@ -39,35 +39,49 @@
                         <div class="card p-3 py-4">
                             
                             <div class="text-center">
-                              {% if request.user == profile.user %}
-                                <img class="profile-page-image" src="{{ request.user.profile.picture.url }}">
-                              {% else %}
-                                <img class="profile-page-image" src="{{ profile.picture.url }}">
-                              {% endif %}
+                              <img class="profile-page-image" src="{{ profile.picture.url }}">
                             </div>
                             
                             <div class="text-center mt-3">
-                                <span class="bg-secondary p-1 px-4 rounded text-white">{{ profile.username }}</span>
-                                <h5 class="mt-2 mb-0">Alexender Schidmt</h5>
-                                <span>UI/UX Designer</span>
+                                <span class="bg-secondary p-1 px-4 rounded text-white"></span>
+                                <h4 class="mt-2 mb-0">{{ user.username }}</h4>
+                                <span>
+                                  {% if profile.first_name %}{{ profile.first_name }}{% endif %} 
+                                  {% if profile.last_name %}{{ profile.last_name }}{% endif %}<br>
+                                  {% if profile.location %}{{ profile.location }}{% endif %}<br>
+                                  {% if profile.birth_date %}D.O.B: {{ profile.birth_date }}{% endif %}
+                                </span>
                                 
                                 <div class="px-4 mt-1">
-                                    <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                                
+                                  {% if profile.bio %}{{ profile.bio }}{% endif %}
                                 </div>
                                 
-                                 <ul class="social-list">
-                                    <li><i class="faa fa fa-facebook"></i></li>
-                                    <li><i class="faa fa fa-dribbble"></i></li>
+                                <ul class="social-list">
+                                  {% if profile.website_url %}
+                                    <li><a target="_blank" class='profile-links' href="{{ profile.website_url }}"><i class="faa fa fa-dribbble"></i></a></li>
+                                  {% endif %}
+                                  {% if profile.facebook_url %}
+                                    <li><a target="_blank" class='profile-links' href="{{ profile.facebook_url }}"><i class="faa fa fa-facebook"></i></a></li>
+                                  {% endif %}
+                                  {% if profile.twitter_url %}
+                                    <li><a target="_blank" class='profile-links' href="{{ profile.twitter_url }}"><i class="faa fa fa-twitter"></i></a></li>
+                                  {% endif %}
+                                  {% if profile.instagram_url %}
+                                    <li><a target="_blank" class='profile-links' href="{{ profile.instagram_url }}"><i class="faa fa fa-instagram"></i></a></li>
+                                  {% endif %}
+                                 
+                                  
+
+                                    {% comment %} <li><i class="faa fa fa-dribbble"></i></li>
                                     <li><i class="faa fa fa-instagram"></i></li>
                                     <li><i class="faa fa fa-linkedin"></i></li>
-                                    <li><i class="faa fa fa-google"></i></li>
+                                    <li><i class="faa fa fa-google"></i></li> {% endcomment %}
                                 </ul>
                                 
                                 <div class="buttons">
                                     
                                     <button class="btn btn-outline-primary px-4">Message</button>
-                                    <button class="btn btn-primary px-4 ms-3">Contact</button>
+                                    <button class="btn btn-primary px-4 ms-3">Follow</button>
                                 </div>
                                 
                                 

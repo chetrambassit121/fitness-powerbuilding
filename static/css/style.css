@@ -195,6 +195,10 @@ form.example::after {
   width: 100px;
 }
 
+.profile-links {
+  color: #8E24AA !important;
+}
+
 .fa {
   background-color: #000;
 }
