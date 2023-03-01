@@ -122,6 +122,16 @@ form.example::after {
   border-radius: 3px;
 }
 
+.login-form {
+  /* margin-top: 100px; */
+  /* background-color: transparent; */
+  /* color: white; */
+  width: 250px;
+  color: #000;
+  /* border: #17ebfa; */
+  /* border-radius: 3px; */
+}
+
 .loginborder {
   border-radius: 2px;
   border: white;
