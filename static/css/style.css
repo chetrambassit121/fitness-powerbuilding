@@ -509,6 +509,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 30px 0;
 }
 
+.header-white {
+  color: white !important;
+}
+
 figure {
   margin-bottom: 2em;
 }

@@ -70,6 +70,7 @@ class EditProfileForm(UserChangeForm):
 	def __init__(self, *args, **kwargs):                                    
 		super(EditProfileForm, self).__init__(*args, **kwargs)   
 		self.fields['city'].queryset = City.objects.none()  
+		self.fields['city'].widget.attrs['class'] = 'form-control' 
 		if 'state' in self.data:
 			try:
 				state_id = int(self.data.get('state'))
@@ -78,6 +79,8 @@ class EditProfileForm(UserChangeForm):
 				pass  
 		elif self.instance.pk:
 			self.fields['city'].queryset = self.instance.state.city_set.order_by('name')   
+		self.fields['state'].widget.attrs['class'] = 'form-control' 
+
 
 
 class ProfilePageForm(forms.ModelForm):		
