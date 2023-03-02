@@ -61,8 +61,9 @@ class EditProfileForm(UserChangeForm):
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))                              																						
 	username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))   
 	first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))                                                                     
-	last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))                                                                    
-
+	last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))         
+ 
+                                                        
 	class Meta:                                                                                         
 		model = User                                                                                    
 		fields = ('username', 'email', 'first_name', 'last_name', 'state', 'city', 'password')   
@@ -88,15 +89,15 @@ class ProfilePageForm(forms.ModelForm):
 		model = UserProfile 
 		fields = ('first_name', 'last_name', 'bio', 'picture', 'website_url', 'birth_date', 'location', 'facebook_url', 'twitter_url', 'instagram_url')
 		widgets = {                                                                                                                                                                                                        
-			'first_name': forms.TextInput(attrs={'placeholder': 'optional', 'class': 'form-control'}),                                                                                                                                                                                                         
-			'last_name': forms.TextInput(attrs={'class': 'form-control'}),       
-			'bio': forms.Textarea(attrs={'class': 'form-control'}),  
+			'first_name': forms.TextInput(attrs={}),                                                                                                                                                                                                         
+			'last_name': forms.TextInput(attrs={}),       
+			'bio': forms.Textarea(attrs={}),  
 			'picture': forms.ImageField(required=False),  
-			'birth_date': forms.Textarea(attrs={'class': 'form-control'}),                                                                                                                                  
-			'location': forms.Textarea(attrs={'class': 'form-control'}),                                                                                                                                                                                                                                                                  
-			'website_url': forms.TextInput(attrs={'class': 'form-control'}),                                                                    
-			'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),                                                                    
-			'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),                                                                    
-			'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),                                                                    
+			'birth_date': forms.Textarea(attrs={}),                                                                                                                                  
+			'location': forms.Textarea(attrs={}),                                                                                                                                                                                                                                                                  
+			'website_url': forms.TextInput(attrs={}),                                                                    
+			'facebook_url': forms.TextInput(attrs={}),                                                                    
+			'twitter_url': forms.TextInput(attrs={}),                                                                    
+			'instagram_url': forms.TextInput(attrs={}),                                                                    
 			# 'pinterest_url': forms.TextInput(attrs={'class': 'form-control'}),                                                                    
 		}

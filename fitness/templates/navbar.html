@@ -56,8 +56,8 @@
                                 <a href="" class="fh5co-sub-ddown">Account</a>
                                 <ul class="fh5co-sub-menu">
                                     <li><a href="{% url 'edit_profile' request.user.profile.pk %}">Settings</a></li>
-                                    <li><a href="#">Profile Page</a></li>
-                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="{% url 'show_profile_page' request.user.profile.pk %}">Profile Page</a></li>
+                                    <li><a href="{% url 'edit_profile_page' request.user.profile.pk %}">Edit Profile</a></li>
                                     {% comment %} <li><a href="#">Inbox</a></li> {% endcomment %}
                                     <li><a href="{% url 'logout' %}">Logout</a></li> 
                                 </ul>

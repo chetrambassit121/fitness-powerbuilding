@@ -14,7 +14,7 @@
       <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
         <div class="fh5co-intro fh5co-table-cell animate-box">
           {% if request.user == profile.user %}
-            <h1 class="text-center">Greetings {{ request.user.username }}</h1>
+            <h1 class="text-center">Greeting's {{ request.user.username }}</h1>
             <h3 class="text-center" style='color: white !important;'>Welcome to your profile page</h3>
           {% else %}
             <h1 class="text-center">Welcome to<br> {{ user.username }}'s <br> profile page</h1>

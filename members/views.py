@@ -209,7 +209,7 @@ class EditProfilePageView(generic.UpdateView):
 
     def get_success_url(self):
         pk = self.kwargs["pk"]
-        return reverse_lazy("show_profile_page", kwargs={"pk": pk})
+        return reverse_lazy("edit_profile_page", kwargs={"pk": pk})
 
     def test_func(self):
         profile = self.get_object()
