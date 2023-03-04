@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} {% load custom_tags %} {% endcomment %}
 <div id="fh5co-header">
     <header id="fh5co-header-section">
         <div class="container">
@@ -46,7 +47,7 @@
                                     {% comment %} <li><a href="#" class="notification hashtag">
                                         <span class="notification-text">#HashTags</span>
                                     </a></li> {% endcomment %}
-                                    <li><a href="#">Social-Feed</a></li>
+                                    <li><a href="{% url 'post-list' %}">Social-Feed</a></li>
                                     <li><a href="#">#HashTags</a></li>
                                     <li><a href="{% url 'users_list' %}">User-List</a></li>
                                     <li><a href="#">Contact</a></li>

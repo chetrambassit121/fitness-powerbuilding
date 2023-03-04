@@ -115,6 +115,10 @@ form.example::after {
   margin-top: 150px;
 }
 
+.margintopsmall {
+  margin-top: 50px;
+}
+
 .loginform {
   /* margin-top: 100px; */
   background-color: transparent;
@@ -1160,11 +1164,17 @@ figure {
   visibility: visible;
 }
 
+.smallerbanner {
+  height: 800px !important;
+}
+
 .fh5co-table,
 .fh5co-table-cell,
 .fh5co-parallax {
-  height: 900px;
+  height: 1200px;
 }
+
+
 
 /* .wrapMeTight   {
   min-height: 100%;
@@ -1234,6 +1244,15 @@ figure {
 }
 
 .fh5co-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.fh5co-table-copy {
+  display: table;
+}
+
+.fh5co-table-cell-copy {
   display: table-cell;
   vertical-align: middle;
 }

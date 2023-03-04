@@ -4,15 +4,15 @@
 {% block content %}
 
 {% if request.user == profile.user %}
-<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic14.jpg);">
+<div class="fh5co-parallax smallerbanner" style="background-image: url(/static/images/fitnesspic14.jpg);">
 {% else %}
-<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic12.jpg);">
+<div class="fh5co-parallax smallerbanner" style="background-image: url(/static/images/fitnesspic12.jpg);">
 {% endif %}
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
-        <div class="fh5co-intro fh5co-table-cell animate-box">
+      <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table smallerbanner">
+        <div class="fh5co-intro fh5co-table-cell animate-box smallerbanner">
           {% if request.user == profile.user %}
             <h1 class="text-center">Greeting's {{ request.user.username }}</h1>
             <h3 class="text-center" style='color: white !important;'>Welcome to your profile page</h3>

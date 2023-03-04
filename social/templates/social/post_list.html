@@ -2,6 +2,243 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
+
+<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic2.jpg);">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+				<div class="fh5co-intro fh5co-table-cell animate-box">
+					<h1 class="text-center">Login</h1>
+					<form method='POST'>
+						{% csrf_token %}
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="text" class="loginform" name="username" placeholder="Username">
+							</div>
+						</div>
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="password" class="loginform" name="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="login-links">
+							<a href={% url 'register' %}><p class="link">Not a User? Register here!</p></a>
+							<a href={% url 'password_reset' %}><p class="link">Forgot username/password</p></a>
+						</div>
+						{% comment %} <div class="col-md-12">
+							<div class="form-group">
+								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+							</div>
+						</div> {% endcomment %}
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Login" class="btn btn-primary">
+							</div>
+						</div>
+						<small><a target="_blank" href="https://www.pexels.com/photo/woman-lifting-barbell-1552249/">Photo by Leon Ardho</a></small>
+					</form>
+                    <form method='POST'>
+						{% csrf_token %}
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="text" class="loginform" name="username" placeholder="Username">
+							</div>
+						</div>
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="password" class="loginform" name="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="login-links">
+							<a href={% url 'register' %}><p class="link">Not a User? Register here!</p></a>
+							<a href={% url 'password_reset' %}><p class="link">Forgot username/password</p></a>
+						</div>
+						{% comment %} <div class="col-md-12">
+							<div class="form-group">
+								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+							</div>
+						</div> {% endcomment %}
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Login" class="btn btn-primary">
+							</div>
+						</div>
+						<small><a target="_blank" href="https://www.pexels.com/photo/woman-lifting-barbell-1552249/">Photo by Leon Ardho</a></small>
+					</form>
+                    <form method='POST'>
+						{% csrf_token %}
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="text" class="loginform" name="username" placeholder="Username">
+							</div>
+						</div>
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="password" class="loginform" name="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="login-links">
+							<a href={% url 'register' %}><p class="link">Not a User? Register here!</p></a>
+							<a href={% url 'password_reset' %}><p class="link">Forgot username/password</p></a>
+						</div>
+						{% comment %} <div class="col-md-12">
+							<div class="form-group">
+								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+							</div>
+						</div> {% endcomment %}
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Login" class="btn btn-primary">
+							</div>
+						</div>
+						<small><a target="_blank" href="https://www.pexels.com/photo/woman-lifting-barbell-1552249/">Photo by Leon Ardho</a></small>
+					</form>
+                    <form method='POST'>
+						{% csrf_token %}
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="text" class="loginform" name="username" placeholder="Username">
+							</div>
+						</div>
+						<div class="row-md-2">
+							<div class="form-group">
+								<input type="password" class="loginform" name="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="login-links">
+							<a href={% url 'register' %}><p class="link">Not a User? Register here!</p></a>
+							<a href={% url 'password_reset' %}><p class="link">Forgot username/password</p></a>
+						</div>
+						{% comment %} <div class="col-md-12">
+							<div class="form-group">
+								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+							</div>
+						</div> {% endcomment %}
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Login" class="btn btn-primary">
+							</div>
+						</div>
+						<small><a target="_blank" href="https://www.pexels.com/photo/woman-lifting-barbell-1552249/">Photo by Leon Ardho</a></small>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- end: fh5co-parallax -->
+
+
+
+{% endblock %}
+
+
+
+
+<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic2.jpg);">
+    <!-- Main Body -->
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class=" col-xs-12 col-xs-offset-0 text-center fh5co-table-copy">
+                    <div class="fh5co-intro fh5co-table-cell-copy animate-box">
+                        <div class="col-sm-5 col-md-6 col-12">
+                            <h1>Comments</h1>
+                            <div class="comment mt-4 text-justify float-left">
+                                <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                <h4>Jhon Doe</h4>
+                                <span>- 20 October, 2018</span>
+                                <br>
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            </div>
+                            <div class="text-justify darker mt-4 float-right">
+                                <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                <h4>Rob Simpson</h4>
+                                <span>- 20 October, 2018</span>
+                                <br>
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            </div>
+                            <div class="comment mt-4 text-justify">
+                                <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                <h4>Jhon Doe</h4>
+                                <span>- 20 October, 2018</span>
+                                <br>
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            </div>
+                            <div class="darker mt-4 text-justify">
+                                <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                <h4>Rob Simpson</h4>
+                                <span>- 20 October, 2018</span>
+                                <br>
+                                <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                            <form id="algin-form">
+                                <div class="form-group">
+                                    <h4>Leave a comment</h4>
+                                    <label for="message">Message</label>
+                                    <textarea name="msg" id=""msg cols="30" rows="5" class="form-control" style="background-color: black;"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="fullname" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <p class="text-secondary">If you have a <a href="#" class="alert-link">gravatar account</a> your address will be used to display your profile picture.</p>
+                                </div>
+                                <div class="form-inline">
+                                    <input type="checkbox" name="check" id="checkbx" class="mr-1">
+                                    <label for="subscribe">Subscribe me to the newlettter</label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="post" class="btn">Post Comment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1 style="display: none;">Socialpage</h1>
     <div class="container">
         {% if user.is_authenticated %}
@@ -242,7 +479,109 @@
         });
     </script>
 
-{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  <div class="row justify-content-center mt-3 mb-5">
                 <div class="col-md-5 col-sm-12 border-bottom">
