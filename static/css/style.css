@@ -1168,10 +1168,14 @@ figure {
   height: 800px !important;
 }
 
+.largerbanner {
+  height: 3500px !important;
+}
+
 .fh5co-table,
 .fh5co-table-cell,
 .fh5co-parallax {
-  height: 1200px;
+  height: 1100px;
 }
 
 

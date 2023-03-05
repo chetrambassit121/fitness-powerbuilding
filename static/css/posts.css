@@ -1,3 +1,58 @@
+/* .bdge {
+    height: 21px;
+    background-color: orange;
+    color: #fff;
+    font-size: 11px;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 3px;
+  }
+  
+  .comments {
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer;
+  }
+  
+  .dot {
+    height: 7px;
+    width: 7px;
+    margin-top: 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .hit-voting:hover {
+    color: blue;
+  }
+  
+  .hit-voting {
+    cursor: pointer;
+  } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media(min-width:568px){
     .end{
         margin-left: auto;
@@ -10,6 +65,12 @@
     }
 }
 
+.search-form{
+    max-width: 150px;
+    margin-left: 20px;
+    color: white !important;
+    background: transparent !important;
+  }
 
 #clicked{
     padding-top: 1px;
@@ -42,17 +103,6 @@
     border-radius: 13px;
     width: 50%;
 }
-
-/* body{
-    background-color: black;
-}
-
-#nav-items li a,#profile{
-    text-decoration: none;
-    color: rgb(224, 219, 219);
-    background-color: black;
-} */
-
 
 .comments{
     margin-top: 5%;
@@ -87,10 +137,16 @@
     color: rgb(184, 183, 183);
 }
 
-h1,h4{
+.postlist h1,h4{
     color: white;
     font-weight: bold;
 }
+
+.comment h4, .darker h4{
+    color: white;
+    /* font-weight: bold; */
+}
+
 label{
     color: rgb(212, 208, 208);
 }
@@ -117,9 +173,15 @@ label{
     border-radius: 12px;
 }
 
-form{
+.greenbackground {
     border: 1px solid rgba(16, 46, 46, 1);
     background-color: rgba(16, 46, 46, 0.973);
     border-radius: 5px;
+}
+
+form{
+    /* border: 1px solid rgba(16, 46, 46, 1);
+    background-color: rgba(16, 46, 46, 0.973);
+    border-radius: 5px; */
     padding: 20px;
  }

@@ -12,9 +12,9 @@ class ExploreForm(forms.Form):
 class PostForm(forms.ModelForm):
     body = forms.CharField(
         label="",
-        widget=forms.Textarea(attrs={"rows": "3", "placeholder": "Say Something..."}),
+        widget=forms.Textarea(attrs={"rows": "7", "cols": "30", "placeholder": "Say Something...", "name":"msg", "class": "form-control"}),
     )
-
+# name="msg" id=""msg cols="30" rows="5" class="form-control" style="background-color: black;"
     image = forms.ImageField(
         required=False, widget=forms.ClearableFileInput(attrs={"multiple": True})
     )
