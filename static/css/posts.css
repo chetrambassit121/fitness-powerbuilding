@@ -127,6 +127,8 @@
     padding-left: 40px;
     padding-right: 30px;
     padding-top: 10px;
+    padding-bottom: 20px;
+    min-width: 375px;
     
 }
 .comment h4,.comment span,.darker h4,.darker span{
@@ -140,6 +142,10 @@
 .postlist h1,h4{
     color: white;
     font-weight: bold;
+}
+
+.publicposts {
+    min-width: 600px;
 }
 
 .comment h4, .darker h4{
