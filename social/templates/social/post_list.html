@@ -59,12 +59,12 @@
                         <p>{{ post.created_on }}</p>
                         <p>{{ post.body }}</p>
                         {% if post.image %}
-                        <div class="ajax_image">
+                        <div class="ajax_image" style="padding-bottom: 15px !important;">
                             <img src="{{ post.image.url }}" class="" height="300" width="375"/>
                         </div>
                         {% endif %}
                         {% if post.video %}
-                            <video class="embed-responsive embed-responsive-16by9 post-image" controls="controls" height="300" width="300">
+                            <video class="embed-responsive embed-responsive-16by9" controls="controls" height="300" width="300" style="padding-bottom: 15px !important;">
                                 <source src="{{post.video.url}}" type="video/mp4" />
                             </video>
                         {% endif %}
