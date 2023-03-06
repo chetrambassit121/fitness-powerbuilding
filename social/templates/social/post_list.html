@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-<div class="fh5co-parallax" style="background-image: url(/static/images/fitnesspic2.jpg);">
+<div class="fh5co-parallax largerbanner" style="background-image: url(/static/images/fitnesspic2.jpg);">
 	{% comment %} <div class="overlay"></div> {% endcomment %}
 	<div class="container">
 		<div class="row margintop">
@@ -39,18 +39,28 @@
                 </form>
             </div>
 			<div class="col-sm-5 col-md-6 col-12 pb-4 postlist">
-                <h1>Public Posts</h1>
+                <h1 class="text-center">Public Posts</h1>
                 {% for post in posts %}
                     <div class="comment mt-4 text-justify float-left">
                         <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
                             <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
-                            {{ post.author }}
+                            <small class="postauthor">{{ post.author }}</small>
+                            <small class="postauthor">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </small>
                         </a>
                         <p>{{ post.created_on }}</p>
                         <p>{{ post.body }}</p>
                         {% if post.image %}
                         <div class="ajax_image">
-                            <img src="{{ post.image.url }}" class="" height="300" width="300"/>
+                            <img src="{{ post.image.url }}" class="" height="300" width="375"/>
                         </div>
                         {% endif %}
                         {% if post.video %}
@@ -58,6 +68,48 @@
                                 <source src="{{post.video.url}}" type="video/mp4" />
                             </video>
                         {% endif %}
+
+
+                        <div class="d-flex flex-row">
+                            <form method="POST" action="{% url 'like' post.id %}" class="like-form" id="{{post.id}}">
+                                {% csrf_token %}
+                                {% if user not in post.likes.all %}
+                                    <input type="hidden"  name="post_id" value="{{ post.id }}">
+                                    <button class="remove-default-btn thumbs-btn like-btn{{post.id}}" type="submit">
+                                        <i class="fa fa-thumbs-up thumbs like-icon{{post.id}}" ><span class="like_count{{post.id}}">{{ post.likes.all.count }}</span></i>
+                                    </button>
+                                {% else %}
+                                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                                    <button class="remove-default-btn thumbs-btn thumbs-fillgreen like-btn{{post.id}}" type="submit">
+                                        <i class="fa fa-thumbs-up thumbs like-icon{{post.id}}"><span class="like_count{{post.id}}">{{ post.likes.all.count }}</span></i>
+                                    </button>
+                                {% endif %}
+                            </form>
+                            
+                            <form method="POST" action="{% url 'dislike' post.id %}" class="dislike-form" id='{{post.id}}'>
+                                {% csrf_token %}
+                                {% if user not in post.dislikes.all %}
+                                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                                    <button class="remove-default-btn thumbs-btn dislike-btn{{post.id}}" type="submit" >
+                                        <i class="fa fa-thumbs-down thumbs dislike-icon{{post.id}}" > <span class="dislike_count{{post.id}}">{{ post.dislikes.all.count }}</span></i>
+                                    </button>
+                                {% else %}
+                                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                                    <button class="remove-default-btn thumbs-btn thumbs-fillred dislike-btn{{post.id}}" type="submit" >
+                                        <i class="fa fa-thumbs-down thumbs dislike-icon{{post.id}}" > <span class="dislike_count{{post.id}}">{{ post.dislikes.all.count }}</span></i>
+                                    </button>
+                                {% endif %}
+                            </form>
+                        </div>
+
+
+
+
+
+
+
+
+
 
                         {% comment %} <h4>Jhon Doe</h4>
                         <span>- 20 October, 2018</span>
@@ -87,13 +139,199 @@
                     <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                 </div> {% endcomment %}
             </div>
-            
 		</div>
 	</div>
 </div>
+<div class="container">
+    <div class="row margintop">
+        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
+            <form method="POST" id="algin-form" class="greenbackground " enctype="multipart/form-data">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    {{ video_form | crispy }}
+                    {% comment %} <textarea name="msg" id=""msg cols="30" rows="5" class="form-control" style="background-color: black;"></textarea> {% endcomment %}
+                    {% comment %} <h4 style="color: white;">Leave a post</h4>
+                    <label for="message">Message</label>
+                    <textarea name="msg" id=""msg cols="30" rows="5" class="form-control" style="background-color: black;"></textarea> {% endcomment %}
+                </div>
+                {% comment %} <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="fullname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" class="form-control">
+                </div> {% endcomment %}
+                {% comment %} <div class="form-group">
+                    <p class="text-secondary">If you have a <a href="#" class="alert-link">gravatar account</a> your address will be used to display your profile picture.</p>
+                </div> {% endcomment %}
+                <div class="form-inline">
+                    <input type="checkbox" name="check" id="checkbx" class="mr-1">
+                    <label for="subscribe">Subscribe me to the newlettter</label>
+                </div>
+                <div class="form-group">
+                    <button id="post" class="btn">Post</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-5 col-md-6 col-12 pb-4 postlist">
+            <h1>Public Posts</h1>
+            {% for post in posts %}
+                <div class="comment mt-4 text-justify float-left">
+                    <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
+                        <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
+                        <small class="postauthor">{{ post.author }}</small>
+                    </a>
+                    <p>{{ post.created_on }}</p>
+                    <p>{{ post.body }}</p>
+                    {% if post.image %}
+                    <div class="ajax_image">
+                        <img src="{{ post.image.url }}" class="" height="300" width="300"/>
+                    </div>
+                    {% endif %}
+                    {% if post.video %}
+                        <video class="embed-responsive embed-responsive-16by9 post-image" controls="controls" height="300" width="300">
+                            <source src="{{post.video.url}}" type="video/mp4" />
+                        </video>
+                    {% endif %}
+
+                    {% comment %} <h4>Jhon Doe</h4>
+                    <span>- 20 October, 2018</span>
+                    <br>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p> {% endcomment %}
+                </div>
+            {% endfor %}
+            {% comment %} <div class="text-justify darker mt-4 float-right">
+                <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                <h4>Rob Simpson</h4>
+                <span>- 20 October, 2018</span>
+                <br>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+            </div>
+            <div class="comment mt-4 text-justify">
+                <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                <h4>Jhon Doe</h4>
+                <span>- 20 October, 2018</span>
+                <br>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+            </div>
+            <div class="darker mt-4 text-justify">
+                <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                <h4>Rob Simpson</h4>
+                <span>- 20 October, 2018</span>
+                <br>
+                <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+            </div> {% endcomment %}
+        </div>
+        
+    </div>
+</div>
 
 
-    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+         
+        $('.like-form').submit(function(e){
+            e.preventDefault();
+            const post_id=$(this).attr('id')
+            const likeText = $(`.like-btn${post_id}`).text()
+            const trim = $.trim(likeText)
+            const url=$(this).attr('action') 
+            let res;
+            const like = $(`.like_count${post_id}`).text()
+            $.ajax({
+                method:"POST",
+                url:url,
+                data:{
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'post_id':post_id,
+                },
+                success:function(response){
+                    if(response.liked===true){
+                        $(`.like-icon${post_id}`).addClass('thumbs-fillgreen')
+                    }else{
+                        $(`.like-icon${post_id}`).removeClass('thumbs-fillgreen')
+                    }
+                    if(response.liked===true){
+                        $(`.like-btn${post_id}`).addClass('thumbs-fillgreen')
+                    }else{
+                        $(`.like-btn${post_id}`).removeClass('thumbs-fillgreen')
+                    }
+                    if(response.disliked===true){
+                        $(`.dislike-icon${post_id}`).addClass("thumbs-fillred")
+                    }else{
+                        $(`.dislike-icon${post_id}`).removeClass("thumbs-fillred")
+                    }
+                    if(response.disliked===true){
+                        $(`.dislike-btn${post_id}`).addClass("thumbs-fillred")
+                    }else{
+                        $(`.dislike-btn${post_id}`).removeClass("thumbs-fillred")
+                    }
+                    likes=$(`.like_count${post_id}`).text(response.likes_count)
+                    parseInt(likes)
+                    dislikes=$(`.dislike_count${post_id}`).text(response.dislikes_count)
+                    parseInt(dislikes)
+                },
+                error:function(response){
+                    console.log("Failed ", response)
+                }
+            })
+        });
+
+
+        $('.dislike-form').submit(function(e){
+            e.preventDefault();  
+            const post_id = $(this).attr('id')
+            const dislikeText = $(`.dislike-btn${post_id}`).text()
+            const trim = $.trim(dislikeText)
+            const url =$(this).attr('action') 
+            let res;
+            const dislike = $(`.dislike_count${post_id}`).text()
+            
+            $.ajax({
+                method:"POST",
+                url:url,
+                data:{
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'post_id':post_id,
+                },
+                success:function(response){
+                    if(response.disliked===true){
+                      $(`.dislike-icon${post_id}`).addClass("thumbs-fillred")
+                    }else{
+                      $(`.dislike-icon${post_id}`).removeClass("thumbs-fillred")
+                    }
+                    if(response.disliked===true){
+                        $(`.dislike-btn${post_id}`).addClass("thumbs-fillred")
+                      }else{
+                        $(`.dislike-btn${post_id}`).removeClass("thumbs-fillred")
+                    }
+                    if(response.liked===true){
+                      $(`.like-icon${post_id}`).addClass('thumbs-fillgreen')
+                    }else{
+                      $(`.like-icon${post_id}`).removeClass('thumbs-fillgreen')
+                    }
+                    if(response.liked===true){
+                        $(`.like-btn${post_id}`).addClass('thumbs-fillgreen')
+                      }else{
+                        $(`.like-btn${post_id}`).removeClass('thumbs-fillgreen')
+                    }
+                    likes=$(`.like_count${post_id}`).text(response.likes_count)
+                    parseInt(likes)
+                    dislikes=$(`.dislike_count${post_id}`).text(response.dislikes_count)
+                    parseInt(dislikes)
+                },
+                error:function(response){
+                    console.log('failed', response)
+                }
+            }) 
+        });
+
+    });
+</script>
 
     
 

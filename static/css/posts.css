@@ -101,13 +101,21 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 13px;
-    width: 50%;
+    /* width: 40%; */
 }
 
 .comments{
     margin-top: 5%;
     margin-left: 20px;
 }
+
+.postauthor {
+    font-size: 16px;
+}
+
+.largerbanner {
+    height: 3500px !important;
+  }
 
 .darker{
     border: 1px solid #ecb21f;
@@ -128,7 +136,7 @@
     padding-right: 30px;
     padding-top: 10px;
     padding-bottom: 20px;
-    min-width: 375px;
+    /* min-width: 450px; */
     
 }
 .comment h4,.comment span,.darker h4,.darker span{
@@ -146,6 +154,29 @@
 
 .publicposts {
     min-width: 600px;
+}
+
+.thumbs {
+    background-color: transparent;
+    font-size: 15px !important;
+}
+
+.thumbs-btn {
+    background-color: transparent;
+    color: white;
+    /* padding: 10px !important; */
+}
+
+.like-form, .dislike-form {
+    padding: 5px 5px 0px 0px !important;
+}
+
+.thumbs-fillred {
+    background-color: red;
+}
+
+.thumbs-fillgreen {
+    background-color: green;
 }
 
 .comment h4, .darker h4{
