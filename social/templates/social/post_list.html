@@ -43,19 +43,22 @@
                 {% for post in posts %}
                     <div class="comment mt-4 text-justify float-left">
                         {% if post.shared_user %}
+                        {% comment %} <div class="d-flex"> {% endcomment %}
                             <a href="{% url 'show_profile_page' post.shared_user.profile.pk %}"> 
                                 <img src="{{ post.shared_user.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
                                 <small class="postauthor">{{ post.shared_user }}</small>
                             </a>
+                            <p>Shared a post on:</p>
+                        {% comment %} </div> {% endcomment %}
                         {% else %}
-                            <div class="">
-                                <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
-                                    <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
-                                    <small class="postauthor">{{ post.author }}</small>
-                                </a>
-                            </div>
+                            
+                            <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
+                                <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
+                                <small class="postauthor">{{ post.author }}</small>
+                            </a>
+                            <p>Posted on:</p>
                         {% endif %}
-                        <small class="postauthor">
+                        {% comment %} <small class="postauthor">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -66,10 +69,10 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </small>
+                        </small> {% endcomment %}
                         {% comment %} </div> {% endcomment %}
                         <p class="createdon">{{ post.created_on }}</p>
+                        <hr width="425" style="color: white;">
                         {% if post.shared_body %}
                             <p>{{ post.shared_body }}</p>
                             <div class="sharedpost">
@@ -184,6 +187,21 @@
                 </div> {% endcomment %}
             </div>
 		</div>
+        <div class="row justify-content-center mt-3 page">
+            <div class="col-md-5 col-sm-12 position-relative">
+                <p style="color: white !important">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</p>
+              
+                {% if posts.has_previous %}
+                <a href="?page=1">&laquo First</a>
+                <a href="?page={{ posts.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">Next</a>
+                <a href="?page={{ posts.paginator.num_pages }}">Last &raquo</a>
+                {% endif %}
+            </div>
+        </div>
 	</div>
 </div>
 

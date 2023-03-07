@@ -116,7 +116,7 @@
 .sharedpost {
     margin-left: 25px;
     background-color: rgba(5, 83, 83, 0.973);
-    padding: 5px 0px 5px 15px;
+    padding: 5px 10px 5px 15px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
@@ -176,7 +176,7 @@
 }
 
 .like-form, .dislike-form {
-    padding: 5px 20px 0px 0px !important;
+    padding: 5px 5px 0px 0px !important;
 }
 
 .createdon {
@@ -226,6 +226,11 @@ label{
     border: 1px solid rgba(16, 46, 46, 1);
     background-color: rgba(16, 46, 46, 0.973);
     border-radius: 5px;
+}
+
+.page a {
+    font-size: 20px ;
+    margin-right: 8px;
 }
 
 form{

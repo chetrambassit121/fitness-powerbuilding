@@ -299,7 +299,7 @@ class PostListView(View):
         post = Post.objects.all()
         post_count = post.count()
         comment = Comment.objects.filter(post=post)
-        p = Paginator(Post.objects.all(), 10)
+        p = Paginator(Post.objects.all(), 5)
         page = request.GET.get("page")
         posts = p.get_page(page)
         context = {
@@ -316,7 +316,7 @@ class PostListView(View):
         post_count = post.count()
         form = PostForm(request.POST, request.FILES)
         share_form = ShareForm()
-        p = Paginator(Post.objects.all(), 10)
+        p = Paginator(Post.objects.all(), 5)
         page = request.GET.get("page")
         posts = p.get_page(page)
 
@@ -335,8 +335,9 @@ class PostListView(View):
             "form": form,
             "post_count": post_count,
         }
-
-        return render(request, "social/post_list.html", context)
+        # return http.HttpResponseRedirect('')
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        # return render(request, "social/post_list.html", context)
 
 
 # share post
