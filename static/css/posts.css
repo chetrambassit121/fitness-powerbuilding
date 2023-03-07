@@ -113,6 +113,14 @@
     font-size: 16px;
 }
 
+.sharedpost {
+    margin-left: 25px;
+    background-color: rgba(5, 83, 83, 0.973);
+    padding: 5px 0px 5px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
 .largerbanner {
     height: 3500px !important;
   }
@@ -168,7 +176,11 @@
 }
 
 .like-form, .dislike-form {
-    padding: 5px 5px 0px 0px !important;
+    padding: 5px 20px 0px 0px !important;
+}
+
+.createdon {
+    font-size: medium;
 }
 
 .thumbs-fillred {
@@ -222,3 +234,7 @@ form{
     border-radius: 5px; */
     padding: 20px;
  }
+
+.nopadding {
+    padding: 0px !important;
+}

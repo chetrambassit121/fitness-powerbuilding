@@ -42,32 +42,68 @@
                 <h1 class="text-center">Public Posts</h1>
                 {% for post in posts %}
                     <div class="comment mt-4 text-justify float-left">
-                        <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
-                            <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
-                            <small class="postauthor">{{ post.author }}</small>
-                            <small class="postauthor">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </small>
-                        </a>
-                        <p>{{ post.created_on }}</p>
-                        <p>{{ post.body }}</p>
-                        {% if post.image %}
-                        <div class="ajax_image" style="padding-bottom: 15px !important;">
-                            <img src="{{ post.image.url }}" class="" height="300" width="375"/>
-                        </div>
+                        {% if post.shared_user %}
+                            <a href="{% url 'show_profile_page' post.shared_user.profile.pk %}"> 
+                                <img src="{{ post.shared_user.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
+                                <small class="postauthor">{{ post.shared_user }}</small>
+                            </a>
+                        {% else %}
+                            <div class="">
+                                <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
+                                    <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
+                                    <small class="postauthor">{{ post.author }}</small>
+                                </a>
+                            </div>
                         {% endif %}
-                        {% if post.video %}
-                            <video class="embed-responsive embed-responsive-16by9" controls="controls" height="300" width="300" style="padding-bottom: 15px !important;">
-                                <source src="{{post.video.url}}" type="video/mp4" />
-                            </video>
+                        <small class="postauthor">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </small>
+                        {% comment %} </div> {% endcomment %}
+                        <p class="createdon">{{ post.created_on }}</p>
+                        {% if post.shared_body %}
+                            <p>{{ post.shared_body }}</p>
+                            <div class="sharedpost">
+                                <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
+                                    <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
+                                    <small class="postauthor">{{ post.author }}</small>
+                                </a>
+                                <p class="createdon">{{ post.shared_on }}</p>
+                                <p>{{ post.body }}</p>
+                                {% if post.image %}
+                                <div class="ajax_image" style="padding-bottom: 15px !important;">
+                                    <img src="{{ post.image.url }}" class="" height="300" width="375"/>
+                                </div>
+                                {% endif %}
+                                {% if post.video %}
+                                    <video class="embed-responsive embed-responsive-16by9" controls="controls" height="300" width="300" style="padding-bottom: 15px !important;">
+                                        <source src="{{post.video.url}}" type="video/mp4" />
+                                    </video>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <p>{{ post.body }}</p>
+                            {% if post.image %}
+                            <div class="ajax_image" style="padding-bottom: 15px !important;">
+                                <img src="{{ post.image.url }}" class="" height="300" width="375"/>
+                            </div>
+                            {% endif %}
+                            {% if post.video %}
+                                <video class="embed-responsive embed-responsive-16by9" controls="controls" height="300" width="300" style="padding-bottom: 15px !important;">
+                                    <source src="{{post.video.url}}" type="video/mp4" />
+                                </video>
+                            {% endif %}
                         {% endif %}
+                      
 
 
                         <div class="d-flex flex-row">
@@ -99,6 +135,14 @@
                                         <i class="fa fa-thumbs-down thumbs dislike-icon{{post.id}}" > <span class="dislike_count{{post.id}}">{{ post.dislikes.all.count }}</span></i>
                                     </button>
                                 {% endif %}
+                            </form>
+
+                            <form method="POST" action="{% url 'share-post' post.pk %}" class="nopadding" id="{{ post.pk }}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ shareform | crispy }}
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success mt-3">Share</button>
+                                </div>
                             </form>
                         </div>
 
@@ -142,92 +186,6 @@
 		</div>
 	</div>
 </div>
-<div class="container">
-    <div class="row margintop">
-        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
-            <form method="POST" id="algin-form" class="greenbackground " enctype="multipart/form-data">
-                <div class="form-group">
-                    {% csrf_token %}
-                    {{ form | crispy }}
-                    {{ video_form | crispy }}
-                    {% comment %} <textarea name="msg" id=""msg cols="30" rows="5" class="form-control" style="background-color: black;"></textarea> {% endcomment %}
-                    {% comment %} <h4 style="color: white;">Leave a post</h4>
-                    <label for="message">Message</label>
-                    <textarea name="msg" id=""msg cols="30" rows="5" class="form-control" style="background-color: black;"></textarea> {% endcomment %}
-                </div>
-                {% comment %} <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="fullname" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" class="form-control">
-                </div> {% endcomment %}
-                {% comment %} <div class="form-group">
-                    <p class="text-secondary">If you have a <a href="#" class="alert-link">gravatar account</a> your address will be used to display your profile picture.</p>
-                </div> {% endcomment %}
-                <div class="form-inline">
-                    <input type="checkbox" name="check" id="checkbx" class="mr-1">
-                    <label for="subscribe">Subscribe me to the newlettter</label>
-                </div>
-                <div class="form-group">
-                    <button id="post" class="btn">Post</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-sm-5 col-md-6 col-12 pb-4 postlist">
-            <h1>Public Posts</h1>
-            {% for post in posts %}
-                <div class="comment mt-4 text-justify float-left">
-                    <a href="{% url 'show_profile_page' post.author.profile.pk %}"> 
-                        <img src="{{ post.author.profile.picture.url }}" alt="" class="rounded-circle" width="40" height="40">
-                        <small class="postauthor">{{ post.author }}</small>
-                    </a>
-                    <p>{{ post.created_on }}</p>
-                    <p>{{ post.body }}</p>
-                    {% if post.image %}
-                    <div class="ajax_image">
-                        <img src="{{ post.image.url }}" class="" height="300" width="300"/>
-                    </div>
-                    {% endif %}
-                    {% if post.video %}
-                        <video class="embed-responsive embed-responsive-16by9 post-image" controls="controls" height="300" width="300">
-                            <source src="{{post.video.url}}" type="video/mp4" />
-                        </video>
-                    {% endif %}
-
-                    {% comment %} <h4>Jhon Doe</h4>
-                    <span>- 20 October, 2018</span>
-                    <br>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p> {% endcomment %}
-                </div>
-            {% endfor %}
-            {% comment %} <div class="text-justify darker mt-4 float-right">
-                <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
-                <h4>Rob Simpson</h4>
-                <span>- 20 October, 2018</span>
-                <br>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-            </div>
-            <div class="comment mt-4 text-justify">
-                <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
-                <h4>Jhon Doe</h4>
-                <span>- 20 October, 2018</span>
-                <br>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-            </div>
-            <div class="darker mt-4 text-justify">
-                <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
-                <h4>Rob Simpson</h4>
-                <span>- 20 October, 2018</span>
-                <br>
-                <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-            </div> {% endcomment %}
-        </div>
-        
-    </div>
-</div>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
